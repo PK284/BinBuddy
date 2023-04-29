@@ -1,7 +1,9 @@
 package com.example.camera
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ContentValues
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -39,7 +41,11 @@ import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.Locale
 import android.widget.ImageView
-import com.bumptech.glide.Glide
+import android.location.Location
+import android.media.ExifInterface
+import java.io.File
+import java.io.IOException
+
 
 typealias LumaListener = (luma: Double) -> Unit
 
@@ -52,6 +58,8 @@ class MainActivity : AppCompatActivity() {
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
     private lateinit var cameraExecutor: ExecutorService
+//    val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,10 +85,18 @@ class MainActivity : AppCompatActivity() {
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
+
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
-        // Create time stamped name and MediaStore entry.
+//        // Create time stamped name and MediaStore entry.
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE_PERMISSIONS)
+//            return
+//        }
+
+// Get current location
+
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
         val contentValues = ContentValues().apply {
