@@ -1,7 +1,11 @@
 package com.example.camera
 import android.Manifest
+import android.app.Dialog
 import android.content.ContentValues
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -29,9 +33,13 @@ import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
 import androidx.camera.video.VideoRecordEvent
 import androidx.core.content.PermissionChecker
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.Locale
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 
 typealias LumaListener = (luma: Double) -> Unit
 
@@ -40,10 +48,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMainBinding
 
     private var imageCapture: ImageCapture? = null
-
+    var storage = Firebase.storage
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
-
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +67,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Set up the listeners for take photo and video capture buttons
-        viewBinding.imageCaptureButton.setOnClickListener { takePhoto() }
+        viewBinding.imageCaptureButton.setOnClickListener { takePhoto()
+
+//            val dialogBinding = layoutInflater.inflate(R.layout.image_preview,null)
+
+        }
         viewBinding.videoCaptureButton.setOnClickListener { captureVideo() }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -102,6 +113,16 @@ class MainActivity : AppCompatActivity() {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
+                    val savedUri = output.savedUri ?: return
+                    val dialogBinding = layoutInflater.inflate(R.layout.image_preview, null)
+                    val myDialog = Dialog(this@MainActivity)
+                    myDialog.setContentView(dialogBinding)
+                    myDialog.setCancelable(true)
+                    myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    val imageView = dialogBinding.findViewById<ImageView>(R.id.image_preview)
+                    imageView.setImageURI(savedUri)
+                    myDialog.show()
+
                 }
             }
         )
