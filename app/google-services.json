@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1001765377735",
+    "project_id": "binbuddy-f8aa6",
+    "storage_bucket": "binbuddy-f8aa6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001765377735:android:d506e0577469bfcf7d10e2",
+        "android_client_info": {
+          "package_name": "com.example.camera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001765377735-r59va1f4jtlaj1u7rii90ae02dmidah6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAFWQbSyUzhzXEzZghz61t7yH0Usz_mZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001765377735-r59va1f4jtlaj1u7rii90ae02dmidah6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
