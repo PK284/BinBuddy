@@ -54,7 +54,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/greybg"
-                                android:hint="Email..." />
+                                android:hint="Email..."
+                                android:textColor="@color/black"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -69,7 +70,9 @@
                                 android:layout_margin="30dp"
                                 android:background="@drawable/greybg"
                                 android:hint="Password..."
-                                android:textColorHint="@color/black" />
+                                android:inputType="textPassword"
+                                android:textColorHint="@color/black"
+                                android:textColor="@color/black"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -102,11 +105,15 @@
 
     <Button
         android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_width="170dp"
+        android:layout_height="71dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="137dp"
         android:layout_marginLeft="160dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="590dp"
+        android:layout_marginEnd="104dp"
         android:backgroundTint="@color/black"
         android:text="Log In"
         android:textColor="@color/white"
@@ -114,12 +121,18 @@
 
     <TextView
         android:id="@+id/signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        
+        android:layout_width="318dp"
+        android:layout_height="29dp"
+        android:layout_below="@+id/btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="41dp"
         android:fontFamily="serif"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="Dont have an Acccount? Sign Up...."
         android:textSize="18sp"
         android:textStyle="italic" />
