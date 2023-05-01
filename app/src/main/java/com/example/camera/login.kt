@@ -57,7 +57,7 @@ class login : AppCompatActivity() {
         }
 //using Intent to go to the Sign-Up page to help user Create and Acoount and Register
         signup.setOnClickListener {
-            Toast.makeText(this,"Ok",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this,"Ok",Toast.LENGTH_SHORT).show()
             intent = Intent(applicationContext,Signup::class.java)
             startActivity(intent)
         }

@@ -3,11 +3,8 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ContentValues
-<<<<<<< HEAD
 import android.content.ContentValues.TAG
-=======
 import android.content.Context
->>>>>>> 27e9eb905688d0adfafd760eb15ba4dbf2ba1fc8
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -47,19 +44,13 @@ import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.Locale
 import android.widget.ImageView
-<<<<<<< HEAD
 import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
-=======
 import android.location.Location
 import android.media.ExifInterface
-import java.io.File
 import java.io.IOException
-
->>>>>>> 27e9eb905688d0adfafd760eb15ba4dbf2ba1fc8
-
 typealias LumaListener = (luma: Double) -> Unit
 
 
@@ -70,12 +61,8 @@ class MainActivity : AppCompatActivity() {
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
     private lateinit var cameraExecutor: ExecutorService
-<<<<<<< HEAD
 //    private val storageRef : StorageReference
-=======
 //    val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
->>>>>>> 27e9eb905688d0adfafd760eb15ba4dbf2ba1fc8
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
