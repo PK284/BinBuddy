@@ -24,7 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/Upload"/>
+                android:text="@string/Upload"
+                android:id="@+id/upload_button"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

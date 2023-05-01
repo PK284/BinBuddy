@@ -1,11 +1,18 @@
 package com.example.camera
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ContentValues
+<<<<<<< HEAD
+import android.content.ContentValues.TAG
+=======
+import android.content.Context
+>>>>>>> 27e9eb905688d0adfafd760eb15ba4dbf2ba1fc8
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -24,6 +31,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.core.Preview
 import androidx.camera.core.CameraSelector
 import android.util.Log
+import android.widget.Button
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
@@ -39,19 +47,35 @@ import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.Locale
 import android.widget.ImageView
+<<<<<<< HEAD
 import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.File
+=======
+import android.location.Location
+import android.media.ExifInterface
+import java.io.File
+import java.io.IOException
+
+>>>>>>> 27e9eb905688d0adfafd760eb15ba4dbf2ba1fc8
 
 typealias LumaListener = (luma: Double) -> Unit
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMainBinding
-
     private var imageCapture: ImageCapture? = null
     var storage = Firebase.storage
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
     private lateinit var cameraExecutor: ExecutorService
+<<<<<<< HEAD
+//    private val storageRef : StorageReference
+=======
+//    val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+>>>>>>> 27e9eb905688d0adfafd760eb15ba4dbf2ba1fc8
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,10 +101,18 @@ class MainActivity : AppCompatActivity() {
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
+
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
-        // Create time stamped name and MediaStore entry.
+//        // Create time stamped name and MediaStore entry.
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE_PERMISSIONS)
+//            return
+//        }
+
+// Get current location
+
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
         val contentValues = ContentValues().apply {
@@ -114,6 +146,28 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
                     val savedUri = output.savedUri ?: return
+
+
+//               -------Uploading the image-------
+                    val storageRef = FirebaseStorage.getInstance().reference
+//                    Creating a refrence of the Image file in Firebase
+                    val imagesRef = storageRef.child("images/${name}")
+//                    -----Uploading file to firebase storage
+                    val uploadTask = imagesRef.putFile(savedUri)
+                    uploadTask.addOnSuccessListener { taskSnapshot ->
+                        // Image upload successful, get the download URL
+                        imagesRef.downloadUrl.addOnSuccessListener { uri ->
+                            val imageUrl = uri.toString()
+                            Log.d(TAG, "Image URL: $imageUrl")
+                        }
+                    }.addOnFailureListener { exception ->
+                        // Handle image upload failure
+                        Log.e(TAG, "Image upload failed: ${exception.message}", exception)
+                        Toast.makeText(baseContext, "Image upload failed", Toast.LENGTH_SHORT).show()
+                    }
+
+
+//                    / Show a dialog with the uploaded image
                     val dialogBinding = layoutInflater.inflate(R.layout.image_preview, null)
                     val myDialog = Dialog(this@MainActivity)
                     myDialog.setContentView(dialogBinding)
@@ -122,13 +176,14 @@ class MainActivity : AppCompatActivity() {
                     val imageView = dialogBinding.findViewById<ImageView>(R.id.image_preview)
                     imageView.setImageURI(savedUri)
                     myDialog.show()
-
+                    Toast.makeText(baseContext,"Image Successfully Uploaded",Toast.LENGTH_SHORT).show()
                 }
             }
         )
     }
 
-    private fun captureVideo() {}
+    private fun captureVideo() {
+    }
 
     private fun startCamera() {
 
