@@ -49,6 +49,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 import android.location.Location
+import android.location.LocationManager
 import android.media.ExifInterface
 import java.io.IOException
 typealias LumaListener = (luma: Double) -> Unit
@@ -92,13 +93,6 @@ class MainActivity : AppCompatActivity() {
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
-//        // Create time stamped name and MediaStore entry.
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE_PERMISSIONS)
-//            return
-//        }
-
-// Get current location
 
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
