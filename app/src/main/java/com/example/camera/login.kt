@@ -7,8 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -45,7 +43,7 @@ class login : AppCompatActivity() {
             auth.signInWithEmailAndPassword(emailid, password).addOnCompleteListener(this) {
                 if (it.isSuccessful) {
                     Toast.makeText(this, "Successfully LoggedIn", Toast.LENGTH_SHORT).show()
-                    intent = Intent(applicationContext,MainActivity::class.java)
+                    intent = Intent(applicationContext, home::class.java)
                     startActivity(intent)
                 } else
                     Toast.makeText(this, "Log In failed ", Toast.LENGTH_SHORT).show()
