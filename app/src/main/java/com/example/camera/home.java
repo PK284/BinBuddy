@@ -32,6 +32,7 @@ public class home extends AppCompatActivity {
         ImageSlider imageSlider = findViewById(R.id.image_slider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
 
+//      using image sliding feature
         slideModels.add(new SlideModel(R.drawable.img_1, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.img_2, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.img_3, ScaleTypes.FIT));
@@ -48,6 +49,7 @@ public class home extends AppCompatActivity {
             }
         });
 
+//      using the camera feature to report the garbage feature
         cam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +59,7 @@ public class home extends AppCompatActivity {
             }
         });
 
+//      Adding a clling feature to the app using which the use can call to register the complaints
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +70,7 @@ public class home extends AppCompatActivity {
             }
         });
 
+//      Adding a mailing feature to the app using which user can report the grivances
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
