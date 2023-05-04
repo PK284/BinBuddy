@@ -25,15 +25,16 @@ class login : AppCompatActivity() {
 
 //        val FirebaseAuth auth;
         val auth = Firebase.auth
-        fun validateuser(){
-            Toast.makeText(this,"Ok!! inside validate user",Toast.LENGTH_SHORT).show()
-//            val value1=name.text.toString()
-            val value2=pass.text.toString()
-            val value3=email.text.toString()
+        fun validateuser(): Boolean {
+            val value2 = pass.text.toString()
+            val value3 = email.text.toString()
 
-            if(value2.isEmpty() || value3.isEmpty()){
-                Toast.makeText(this,"Please eneter a value",Toast.LENGTH_SHORT).show()
+            if(value2.isEmpty() || value3.isEmpty()) {
+                Toast.makeText(this, "Please enter a value", Toast.LENGTH_SHORT).show()
+                return false
             }
+
+            return true
         }
 
         //        auth = FirebaseAuth.getInstance();
@@ -49,13 +50,16 @@ class login : AppCompatActivity() {
                     Toast.makeText(this, "Log In failed ", Toast.LENGTH_SHORT).show()
             }
         }
+
+
         register.setOnClickListener {
-//            validateuser()
-            login()
+            if (validateuser()) {
+                login()
+            }
         }
+
 //using Intent to go to the Sign-Up page to help user Create and Acoount and Register
         signup.setOnClickListener {
-//            Toast.makeText(this,"Ok",Toast.LENGTH_SHORT).show()
             intent = Intent(applicationContext,Signup::class.java)
             startActivity(intent)
         }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -80,6 +81,16 @@ public class home extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Garbage Complaint");
                 intent.putExtra(Intent.EXTRA_TEXT, "***Type your Complaint below**");
                 startActivity(Intent.createChooser(intent, "Send Email"));
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(home.this, login.class);
+                startActivity(i);
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(home.this,"Sucesfully Loged Out!",Toast.LENGTH_SHORT).show();
             }
         });
 

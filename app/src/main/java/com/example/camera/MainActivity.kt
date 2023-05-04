@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity() {
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
     private lateinit var cameraExecutor: ExecutorService
+
 //    private val storageRef : StorageReference
 //    val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
@@ -69,6 +71,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
+        val back = findViewById<ImageView>(R.id.back)
+        back.setOnClickListener(){
+            intent= Intent(applicationContext,home::class.java)
+            startActivity(intent)
+        }
+
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -243,4 +252,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }
