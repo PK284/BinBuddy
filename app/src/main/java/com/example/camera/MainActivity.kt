@@ -50,9 +50,15 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 import android.location.Location
+import android.location.LocationListener
 import android.location.LocationManager
 import android.media.ExifInterface
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.database.ktx.database
 import java.io.IOException
+import java.util.Date
+
 typealias LumaListener = (luma: Double) -> Unit
 
 
@@ -101,7 +107,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
-
 
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
@@ -173,7 +178,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun captureVideo() {
+        // Check if the app has permission to access the user's location
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // If the app does not have permission to access location,
+            // request the permission from the user
+            return
+        }
+
+        // Get the user's last known location
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+//      Generate a unique filename for the location text document
+        val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+        val timestamp = dateFormat.format(Date())
+        val filename = "location_$timestamp.txt"
+
+//      Store the location information in Firebase Storage with the unique filename
+        val storageRef = FirebaseStorage.getInstance().reference
+        val locationRef = storageRef.child("Location/$filename")
+
+        locationRef.putBytes(location.toString().toByteArray())
+            .addOnSuccessListener {
+                Log.d(TAG, "Location stored successfully.")
+            }
+            .addOnFailureListener {
+                Log.e(TAG, "Failed to store location: ${it.message}")
+            }
+        Toast.makeText(this,"Location Uploaded Sucessfully!!",Toast.LENGTH_SHORT).show()
     }
+
+
+
 
     private fun startCamera() {
 
