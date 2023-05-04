@@ -164,14 +164,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun captureVideo() {
 // Check if the app has permission to access the user's location
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            return
-        }
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // If the app does not have permission to access location,
+                    // request the permission from the user
+                    return
+                }
 
 // Get the user's last known location
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -194,7 +195,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         Toast.makeText(this, "Location uploaded successfully!", Toast.LENGTH_SHORT).show()
-
     }
 
 
