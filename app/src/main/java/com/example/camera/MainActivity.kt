@@ -1,16 +1,12 @@
 package com.example.camera
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -29,23 +25,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.core.Preview
 import androidx.camera.core.CameraSelector
 import android.util.Log
-import android.widget.Button
-import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.ImageProxy
-import androidx.camera.video.FallbackStrategy
-import androidx.camera.video.MediaStoreOutputOptions
-import androidx.camera.video.Quality
-import androidx.camera.video.QualitySelector
-import androidx.camera.video.VideoRecordEvent
-import androidx.core.content.PermissionChecker
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.Locale
 import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
@@ -178,30 +163,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun captureVideo() {
-        // Check if the app has permission to access the user's location
+// Check if the app has permission to access the user's location
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // If the app does not have permission to access location,
-            // request the permission from the user
+
             return
         }
 
-        // Get the user's last known location
+// Get the user's last known location
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
-//      Generate a unique filename for the location text document
+// Generate a unique filename for the location text document
         val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
         val timestamp = dateFormat.format(Date())
         val filename = "location_$timestamp.txt"
 
-//      Store the location information in Firebase Storage with the unique filename
+// Store the location information in Firebase Storage with the unique filename
         val storageRef = FirebaseStorage.getInstance().reference
         val locationRef = storageRef.child("Location/$filename")
-
         locationRef.putBytes(location.toString().toByteArray())
             .addOnSuccessListener {
                 Log.d(TAG, "Location stored successfully.")
@@ -209,7 +192,9 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Log.e(TAG, "Failed to store location: ${it.message}")
             }
-        Toast.makeText(this,"Location Uploaded Sucessfully!!",Toast.LENGTH_SHORT).show()
+
+        Toast.makeText(this, "Location uploaded successfully!", Toast.LENGTH_SHORT).show()
+
     }
 
 
