@@ -1,14 +1,8 @@
 # BinBuddy App
 
-BinBuddy is a mobile app that helps users locate nearby waste bins and promotes responsible waste disposal. The app provides users with the convenience of finding the nearest bin, along with additional features like bin types, ratings, and user feedback.
+Bin Buddy is an innovative mobile application designed to revolutionize the way we manage and track garbage disposal. By leveraging the power of image capturing and smart data management, Bin Buddy provides users with an efficient and user-friendly solution for proper waste management.
 
-## Features
 
-- Find nearby waste bins based on the user's current location
-- Display information about each bin, including bin type, ratings, and user feedback
-- Allow users to add new bins and contribute to the database
-- Rate and provide feedback on existing bins to help maintain data accuracy
-- User-friendly interface and intuitive design for easy navigation
 
 ## Screenshots
 
@@ -21,8 +15,7 @@ BinBuddy is a mobile app that helps users locate nearby waste bins and promotes 
 - Android Studio: IDE for Android app development
 - Kotlin: Programming language for Android app development
 - Firebase: Backend services for authentication, storage, and database
-- Google Maps API: Integration for displaying maps and location services
-- Material Design: UI/UX design principles for a modern and intuitive app interface
+
 
 ## Installation
 
