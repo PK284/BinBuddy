@@ -12,7 +12,7 @@ BinBuddy is a mobile app that helps users locate nearby waste bins and promotes 
 
 ## Screenshots
 
-![Screenshot 1]![Binss2](https://github.com/PK284/BinBuddy/assets/72080733/f2152026-3bee-40eb-9007-ea917342bcf0)
+![Screenshot 1](![Binss1](https://github.com/PK284/BinBuddy/assets/72080733/e7a83a5b-629a-4d0b-b05f-70a64dde1dc4))
 ![Screenshot 2](![Binss1](https://github.com/PK284/BinBuddy/assets/72080733/5d46e98b-f13b-435e-a37e-9b3ac53637bc))
 
 ## Technologies Used
